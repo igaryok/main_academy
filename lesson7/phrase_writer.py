@@ -46,7 +46,6 @@ def main():
         num = 3
     elif not (int(sys.argv[1]) in range(1,101)):
         print("The argument must be integer from 1 to 100. The argument is set to the default value 3")
-        print()
         num = 3
     else:
         num = int(sys.argv[1])
