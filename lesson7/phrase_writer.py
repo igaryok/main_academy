@@ -29,7 +29,7 @@ def print_ordinal(n):
         result_string = dic_num_pfraze["dozens_ordinal"][n // 10 - 1]
     elif n < 10:
         result_string = dic_num_pfraze["units_ordinal"][n-1]
-    elif 9 < n < 20:
+    elif 10 < n < 20:
         result_string = dic_num_pfraze["11-19"][n - 11]
     else:
         result_string = dic_num_pfraze["dozens"][n // 10 - 1] + " " + dic_num_pfraze["units_ordinal"][n % 10 - 1]
