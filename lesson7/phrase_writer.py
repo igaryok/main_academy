@@ -56,7 +56,7 @@ def main():
         if phrase:
             print("The "+print_ordinal(_)+" phrase:", phrase[::-1], file=write_file, flush=True)
         else:
-            print("Thank you!")
+            print("You have entered empty string. Operation is stoped.Thank you!")
             break
     else:
         print("Thank you!")
