@@ -1,0 +1,144 @@
+<<The first list of people (sorted by quantity of purchases)>>
+
+Bellatrix Lestrange :
+Total purchases: 19 ; Total sum: 8573.44
+In currency:
+EUR : 4939.75
+USD : 3633.69
+----------
+Dolores Umbridge :
+Total purchases: 16 ; Total sum: 18327.04
+In currency:
+USD : 10979.70
+EUR : 7347.34
+----------
+Joseph Tribbiani :
+Total purchases: 16 ; Total sum: 14193.63
+In currency:
+EUR : 4136.11
+USD : 10057.52
+----------
+Hermione Granger :
+Total purchases: 16 ; Total sum: 10779.75
+In currency:
+USD : 7327.83
+EUR : 3451.92
+----------
+Albus Dumbledore :
+Total purchases: 16 ; Total sum: 8873.48
+In currency:
+USD : 7150.32
+EUR : 1723.16
+----------
+Petunia Dursley :
+Total purchases: 15 ; Total sum: 15774.45
+In currency:
+EUR : 9407.59
+USD : 6366.86
+----------
+Narcissa Malfoy :
+Total purchases: 15 ; Total sum: 19666.26
+In currency:
+USD : 15287.10
+EUR : 4379.16
+----------
+Peter Pettigrew :
+Total purchases: 15 ; Total sum: 19058.01
+In currency:
+USD : 14277.30
+EUR : 4780.71
+----------
+Vernon Dursley :
+Total purchases: 14 ; Total sum: 14853.21
+In currency:
+EUR : 6588.14
+USD : 8265.07
+----------
+Rubeus Hagrid :
+Total purchases: 13 ; Total sum: 13734.66
+In currency:
+USD : 10727.06
+EUR : 3007.60
+----------
+Lucius Malfoy :
+Total purchases: 13 ; Total sum: 9476.53
+In currency:
+USD : 6848.96
+EUR : 2627.57
+----------
+Molly Weasley :
+Total purchases: 13 ; Total sum: 5152.22
+In currency:
+EUR : 2817.67
+USD : 2334.55
+----------
+Ginny Weasley :
+Total purchases: 13 ; Total sum: 17640.17
+In currency:
+USD : 11818.13
+EUR : 5822.04
+----------
+Phoebe Buffay :
+Total purchases: 13 ; Total sum: 15466.01
+In currency:
+EUR : 4187.79
+USD : 11278.22
+----------
+Severus Snape :
+Total purchases: 13 ; Total sum: 12376.76
+In currency:
+USD : 9499.73
+EUR : 2877.03
+----------
+Chandler Bing :
+Total purchases: 13 ; Total sum: 574.98
+In currency:
+USD : 574.98
+----------
+Monica Geller :
+Total purchases: 13 ; Total sum: 2420.52
+In currency:
+EUR : 696.56
+USD : 1723.96
+----------
+Sirius Black :
+Total purchases: 12 ; Total sum: 15641.00
+In currency:
+EUR : 4230.60
+USD : 11410.40
+----------
+Draco Malfoy :
+Total purchases: 12 ; Total sum: 6335.34
+In currency:
+USD : 4822.25
+EUR : 1513.09
+----------
+Rachel Green :
+Total purchases: 12 ; Total sum: 18180.37
+In currency:
+USD : 16820.82
+EUR : 1359.55
+----------
+Harry Potter :
+Total purchases: 12 ; Total sum: 15203.37
+In currency:
+USD : 12228.16
+EUR : 2975.21
+----------
+Ron Weasley :
+Total purchases: 11 ; Total sum: 13967.28
+In currency:
+USD : 11241.14
+EUR : 2726.14
+----------
+Remus Lupin :
+Total purchases: 11 ; Total sum: 6290.72
+In currency:
+EUR : 2247.09
+USD : 4043.63
+----------
+Ross Geller :
+Total purchases: 11 ; Total sum: 2031.90
+In currency:
+USD : 2031.90
+----------
