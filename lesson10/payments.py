@@ -22,35 +22,42 @@ def to_float(number_in_string):
     return result
 
 
-def create_payments_dic(name_of_file, result_dic):
+def create_payments_dic(work_dir):
     """
-    Function create/change dictionary result_dic. It takes data from file - namae_of_file
+    Function create dictionary result_dic. It takes data from file-name_of_file
     structure of dictionary: key - string with name of man
-    value - list of tuples with payments, where every tuple has next structure: first item string with date of payment
-    second item float with amount of payment and third item - string with name of currency
-    :param name_of_file: name of file with data
-    :param result_dic: dictionary
-    :return: None
+    value - list of tuples with payments, where every tuple has next structure:
+    first item string with date of payment, second item float with amount of
+    payment and third item - string with name of currency
+    :param work_dir: dir with data files
+    :return: dictionary
     """
     pattern = r"(.+);(\d+[\.,]?\d*) ([A-Z]{3});(\d{4}(-\d{2}){2}) \d{2}(:\d{2}){2};(.*);"
-    lines_in_file = 0
-    patterned_lines = 0
-    with open(name_of_file) as file:
-        for line in file:
-            lines_in_file += 1
-            result = re.match(pattern, line)
-            if result:
-                patterned_lines += 1
-                if result.group(7) == "out":
-                    if not result_dic.get(result.group(1)):
-                        result_dic[result.group(1)] = list()
-                    result_dic[result.group(1)].append((result.group(4), to_float(result.group(2)), result.group(3)))
+    result_dic = dict()
+    payment_days = []
+    for each in os.listdir(work_dir):
+        lines_in_file = 0
+        patterned_lines = 0
+        if os.path.isfile(work_dir + each):
+            payment_days.append(each.replace(".txt", ""))
 
-    if not (lines_in_file == patterned_lines):
-        print("The quantity of lines from", name_of_file, "is different from quantity notes. Maybe something wrong")
-        print(lines_in_file, patterned_lines)
+        with open(work_dir + each) as file:
+            for line in file:
+                lines_in_file += 1
+                result = re.match(pattern, line)
+                if result:
+                    patterned_lines += 1
+                    if result.group(7) == "out":
+                        if not result_dic.get(result.group(1)):
+                            result_dic[result.group(1)] = list()
+                        result_dic[result.group(1)].append((result.group(4), to_float(result.group(2)),
+                                                            result.group(3)))
 
-    return None
+        if not (lines_in_file == patterned_lines):
+            print("The quantity of lines from", each, "is different from quantity notes. Maybe something wrong")
+            print(lines_in_file, patterned_lines)
+
+    return result_dic, payment_days
 
 
 def get_sums(lst):
@@ -104,13 +111,9 @@ def create_3rd_list(dic, date):
 def main():
     payments_dir = "payments"
     work_dir = os.getcwd() + "/" + payments_dir + "/"
-    result_dic = dict()
-    payment_days = []
+
     # create payment dictionary from all payment files
-    for each in os.listdir(work_dir):
-        if os.path.isfile(work_dir + each):
-            create_payments_dic(work_dir + each, result_dic)
-            payment_days.append(each.replace(".txt", ""))
+    result_dic, payment_days = create_payments_dic(work_dir)
 
     # the first list of people (sorted by total sum and quantity of purchases)
     with open("1st_list_1.txt", "w") as write_file:
