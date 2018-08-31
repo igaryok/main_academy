@@ -30,7 +30,7 @@ def create_payments_dic(work_dir):
     first item string with date of payment, second item float with amount of
     payment and third item - string with name of currency
     :param work_dir: dir with data files
-    :return: dictionary
+    :return: dictionary and number of payments days - integer
     """
     pattern = r"(.+);(\d+[\.,]?\d*) ([A-Z]{3});(\d{4}(-\d{2}){2}) \d{2}(:\d{2}){2};(.*);"
     result_dic = dict()
@@ -112,7 +112,7 @@ def main():
     payments_dir = "payments"
     work_dir = os.getcwd() + "/" + payments_dir + "/"
 
-    # create payment dictionary from all payment files
+    # create payment dictionary from all payment files and number of payments days
     result_dic, payment_days = create_payments_dic(work_dir)
 
     # the first list of people (sorted by total sum and quantity of purchases)
