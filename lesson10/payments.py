@@ -30,7 +30,7 @@ def create_payments_dic(work_dir):
     first item string with date of payment, second item float with amount of
     payment and third item - string with name of currency
     :param work_dir: dir with data files
-    :return: dictionary and number of payments days - integer
+    :return: dictionary and list of payments date
     """
     pattern = r"(.+);(\d+[\.,]?\d*) ([A-Z]{3});(\d{4}(-\d{2}){2}) \d{2}(:\d{2}){2};(.*);"
     result_dic = dict()
@@ -60,59 +60,11 @@ def create_payments_dic(work_dir):
     return result_dic, payment_days
 
 
-def get_sums(lst):
-    dic_sums = dict()
-    total = 0
-    for each in lst:
-        if not dic_sums.get(each[2]):
-            dic_sums[each[2]] = 0
-        dic_sums[each[2]] += each[1]
-        total += each[1]
-
-    return list(dic_sums.items()), total
-
-
-def get_all_date(lst):
-    result_lst = []
-    for each in lst:
-        result_lst.append(each[0])
-
-    return result_lst
-
-
-def create_1st_list(dic):
-    result_list = []
-    for each in dic:
-        total_sums, total = get_sums(dic[each])
-        result_list.append((each, len(each), total, total_sums))
-
-    return result_list
-
-
-def create_2nd_list(dic, n):
-    result_list = []
-    for each in dic:
-        if len(set(get_all_date(dic[each]))) == n:
-            result_list.append(each)
-
-    return result_list
-
-
-def create_3rd_list(dic, date):
-    result_list = []
-    for each in dic:
-        days = set(get_all_date(dic[each]))
-        if len(days) == 1 and list(days)[0] == date:
-            result_list.append(each)
-
-    return result_list
-
-
 def main():
     payments_dir = "payments"
     work_dir = os.getcwd() + "/" + payments_dir + "/"
 
-    # create payment dictionary from all payment files and number of payments days
+    # create payment dictionary and list of payments days from all payment files
     result_dic, payment_days = create_payments_dic(work_dir)
 
     # the first list of people (sorted by total sum and quantity of purchases)
@@ -121,36 +73,50 @@ def main():
         print("")
         write_file.write("<<The first list of people (sorted by total sum)>>\n")
         write_file.write("\n")
-        for each in sorted(create_1st_list(result_dic), key=lambda x: x[2], reverse=True):
-            print(each[0], ":")
-            print("Total purchases:", each[1], "; Total sum:", '{:.2f}'.format(each[2]))
+        for item, value in sorted(result_dic.items(), key=lambda x: sum([a[1] for a in x[1]]), reverse=True):
+            print(item, ":")
+            total_sum = '{:.2f}'.format(sum([a[1] for a in value]))
+            print("Total purchases:", len(value), " ; Total sum:", total_sum)
             print("In currency:")
-            write_file.write(each[0] + " :\n")
-            write_file.write("Total purchases: " + str(each[1]) + " ; Total sum: " + '{:.2f}'.format(each[2]) + "\n")
-            write_file.write("In currency:\n")
-            for item in each[3]:
-                print(item[0], ":", '{:.2f}'.format(item[1]))
-                write_file.write(item[0] + " : " + '{:.2f}'.format(item[1]) + "\n")
+            write_file.write(item + ":\n")
+            write_file.write("Total purchases: " + str(len(value)) + " ; Total sum: " + total_sum + "\n")
+            currency_dic = dict()
+            for each in value:
+                if not currency_dic.get(each[2]):
+                    currency_dic[each[2]] = 0
+                currency_dic[each[2]] += each[1]
+            for key, val in currency_dic.items():
+                print(key, " : ", '{:.2f}'.format(val))
+                write_file.write(key + " : " + '{:.2f}'.format(val) + "\n")
+
             print("----------")
             write_file.write("----------\n")
+            del currency_dic
 
     with open("1st_list_2.txt", "w") as write_file:
         print("<<The first list of people (sorted by quantity of purchases)>>")
         print("")
         write_file.write("<<The first list of people (sorted by quantity of purchases)>>\n")
         write_file.write("\n")
-        for each in sorted(create_1st_list(result_dic), key=lambda x: x[1], reverse=True):
-            print(each[0], ":")
-            print("Total purchases:", each[1], "; Total sum:", '{:.2f}'.format(each[2]))
+        for item, value in sorted(result_dic.items(), key=lambda x: len(x[1]), reverse=True):
+            print(item, ":")
+            total_sum = '{:.2f}'.format(sum([a[1] for a in value]))
+            print("Total purchases:", len(value), " ; Total sum:", total_sum)
             print("In currency:")
-            write_file.write(each[0] + " :\n")
-            write_file.write("Total purchases: " + str(each[1]) + " ; Total sum: " + '{:.2f}'.format(each[2]) + "\n")
-            write_file.write("In currency:\n")
-            for item in each[3]:
-                print(item[0], ":", '{:.2f}'.format(item[1]))
-                write_file.write(item[0] + " : " + '{:.2f}'.format(item[1]) + "\n")
+            write_file.write(item + ":\n")
+            write_file.write("Total purchases: " + str(len(value)) + " ; Total sum: " + total_sum + "\n")
+            currency_dic = dict()
+            for each in value:
+                if not currency_dic.get(each[2]):
+                    currency_dic[each[2]] = 0
+                currency_dic[each[2]] += each[1]
+            for key, val in currency_dic.items():
+                print(key, " : ", '{:.2f}'.format(val))
+                write_file.write(key + " : " + '{:.2f}'.format(val) + "\n")
+
             print("----------")
             write_file.write("----------\n")
+            del currency_dic
 
     # the second list of people, whom made purchases every day
     with open("2nd_list.txt", "w") as write_file:
@@ -158,9 +124,10 @@ def main():
         print("")
         write_file.write("<<The second list of people, whom made purchases every day>>\n")
         write_file.write("\n")
-        for item in create_2nd_list(result_dic, len(payment_days)):
-            print(item)
-            write_file.write(item + "\n")
+        for item, value in result_dic.items():
+            if len(set([a[0] for a in value])) == len(payment_days):
+                print(item)
+                write_file.write(item + "\n")
 
     # the third list of people whom made purchases in the first day only
     with open("3rd_list.txt", "w") as write_file:
@@ -168,9 +135,11 @@ def main():
         print("")
         write_file.write("<<The third list of people whom made purchases in the first day only>>\n")
         write_file.write("\n")
-        for item in create_3rd_list(result_dic, sorted(payment_days)[0]):
-            print(item)
-            write_file.write(item + "\n")
+        for item, value in result_dic.items():
+            if (len(list(set([a[0] for a in value]))) == 1) and \
+                    (list(set([a[0] for a in value]))[0] == sorted(payment_days)[0]):
+                print(item)
+                write_file.write(item + "\n")
 
 
 if __name__ == '__main__':
