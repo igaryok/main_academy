@@ -73,6 +73,7 @@ def main():
         print("")
         write_file.write("<<The first list of people (sorted by total sum)>>\n")
         write_file.write("\n")
+        # print all person sorted by total sum from their purchases
         for item, value in sorted(result_dic.items(), key=lambda x: sum([a[1] for a in x[1]]), reverse=True):
             print(item, ":")
             total_sum = '{:.2f}'.format(sum([a[1] for a in value]))
@@ -98,6 +99,8 @@ def main():
         print("")
         write_file.write("<<The first list of people (sorted by quantity of purchases)>>\n")
         write_file.write("\n")
+        # print all person sorted by total quantity of purchases
+        # (quantity of their payments)
         for item, value in sorted(result_dic.items(), key=lambda x: len(x[1]), reverse=True):
             print(item, ":")
             total_sum = '{:.2f}'.format(sum([a[1] for a in value]))
@@ -125,6 +128,9 @@ def main():
         write_file.write("<<The second list of people, whom made purchases every day>>\n")
         write_file.write("\n")
         for item, value in result_dic.items():
+            # create a list from all date of purchases for one person.
+            # If length of set of this date equal length of all payments day
+            # from our data print person
             if len(set([a[0] for a in value])) == len(payment_days):
                 print(item)
                 write_file.write(item + "\n")
@@ -136,6 +142,9 @@ def main():
         write_file.write("<<The third list of people whom made purchases in the first day only>>\n")
         write_file.write("\n")
         for item, value in result_dic.items():
+            # create a list from all date of purchases for one person. If
+            # this is one day and this day equal the first payment day from
+            # our data print person
             if (len(list(set([a[0] for a in value]))) == 1) and \
                     (list(set([a[0] for a in value]))[0] == sorted(payment_days)[0]):
                 print(item)
