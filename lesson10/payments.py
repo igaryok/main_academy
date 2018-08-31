@@ -67,59 +67,36 @@ def main():
     # create payment dictionary and list of payments days from all payment files
     result_dic, payment_days = create_payments_dic(work_dir)
 
-    # the first list of people (sorted by total sum and quantity of purchases)
-    with open("1st_list_1.txt", "w") as write_file:
-        print("<<The first list of people (sorted by total sum)>>")
-        print("")
-        write_file.write("<<The first list of people (sorted by total sum)>>\n")
-        write_file.write("\n")
-        # print all person sorted by total sum from their purchases
-        for item, value in sorted(result_dic.items(), key=lambda x: sum([a[1] for a in x[1]]), reverse=True):
-            print(item, ":")
-            total_sum = '{:.2f}'.format(sum([a[1] for a in value]))
-            print("Total purchases:", len(value), " ; Total sum:", total_sum)
-            print("In currency:")
-            write_file.write(item + ":\n")
-            write_file.write("Total purchases: " + str(len(value)) + " ; Total sum: " + total_sum + "\n")
-            currency_dic = dict()
-            for each in value:
-                if not currency_dic.get(each[2]):
-                    currency_dic[each[2]] = 0
-                currency_dic[each[2]] += each[1]
-            for key, val in currency_dic.items():
-                print(key, " : ", '{:.2f}'.format(val))
-                write_file.write(key + " : " + '{:.2f}'.format(val) + "\n")
-
-            print("----------")
-            write_file.write("----------\n")
-            del currency_dic
-
-    with open("1st_list_2.txt", "w") as write_file:
-        print("<<The first list of people (sorted by quantity of purchases)>>")
-        print("")
-        write_file.write("<<The first list of people (sorted by quantity of purchases)>>\n")
-        write_file.write("\n")
-        # print all person sorted by total quantity of purchases
-        # (quantity of their payments)
-        for item, value in sorted(result_dic.items(), key=lambda x: len(x[1]), reverse=True):
-            print(item, ":")
-            total_sum = '{:.2f}'.format(sum([a[1] for a in value]))
-            print("Total purchases:", len(value), " ; Total sum:", total_sum)
-            print("In currency:")
-            write_file.write(item + ":\n")
-            write_file.write("Total purchases: " + str(len(value)) + " ; Total sum: " + total_sum + "\n")
-            currency_dic = dict()
-            for each in value:
-                if not currency_dic.get(each[2]):
-                    currency_dic[each[2]] = 0
-                currency_dic[each[2]] += each[1]
-            for key, val in currency_dic.items():
-                print(key, " : ", '{:.2f}'.format(val))
-                write_file.write(key + " : " + '{:.2f}'.format(val) + "\n")
-
-            print("----------")
-            write_file.write("----------\n")
-            del currency_dic
+    # the first list of people (sorted by total sum and quantity of purchases) -
+    # print all person sorted by total sum from their purchases
+    # the second list of people (sorted by quantity of purchases) -
+    # print all person sorted by quantity of purchases (by quantity of their payments)
+    setting = (("1", "(sorted by total sum)>>", lambda x: sum([a[1] for a in x[1]])),
+               ("2", "(sorted by quantity of purchases)>>", lambda x: len(x[1])))
+    for sett in setting:
+        with open("1st_list_" + sett[0] + ".txt", "w") as write_file:
+            print("<<The first list of people", sett[1])
+            print("")
+            write_file.write("<<The first list of people " + sett[1] + "\n")
+            write_file.write("\n")
+            for item, value in sorted(result_dic.items(), key=sett[2], reverse=True):
+                print(item, ":")
+                total_sum = '{:.2f}'.format(sum([a[1] for a in value]))
+                print("Total purchases:", len(value), " ; Total sum:", total_sum)
+                print("In currency:")
+                write_file.write(item + ":\n")
+                write_file.write("Total purchases: " + str(len(value)) + " ; Total sum: " + total_sum + "\n")
+                currency_dic = dict()
+                for each in value:
+                    if not currency_dic.get(each[2]):
+                        currency_dic[each[2]] = 0
+                    currency_dic[each[2]] += each[1]
+                for key, val in currency_dic.items():
+                    print(key, " : ", '{:.2f}'.format(val))
+                    write_file.write(key + " : " + '{:.2f}'.format(val) + "\n")
+                print("----------")
+                write_file.write("----------\n")
+                del currency_dic
 
     # the second list of people, whom made purchases every day
     with open("2nd_list.txt", "w") as write_file:
