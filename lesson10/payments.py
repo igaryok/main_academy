@@ -122,8 +122,8 @@ def main():
             # create a list from all date of purchases for one person. If
             # this is one day and this day equal the first payment day from
             # our data print person
-            if (len(list(set([a[0] for a in value]))) == 1) and \
-                    (list(set([a[0] for a in value]))[0] == sorted(payment_days)[0]):
+            if (len(list(set([a[0] for a in value]))) == 1 and 
+                    list(set([a[0] for a in value]))[0] == sorted(payment_days)[0]):
                 print(item)
                 write_file.write(item + "\n")
 
