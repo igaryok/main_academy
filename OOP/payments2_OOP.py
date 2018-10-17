@@ -89,6 +89,17 @@ class Payment:
         Payment.payment_list.append(self)
         Payment.payment_id += 1
 
+    @staticmethod
+    def create_from_string(string):
+        payer = Payer.find_by_name(string.split(";")[0])
+        if payer:
+            amount = float(string.split(";")[1].split()[0].replace(",", "."))
+            currency = string.split(";")[1].split()[1]
+            date = datetime.datetime.strptime(string.split(";")[2].split()[0], "%Y-%m-%d").date()
+            payer.add_payment(amount, currency, date)
+        else:
+            print(string.split(";")[0], "not found")
+
 
 def work_with_files():
     '''
@@ -105,7 +116,7 @@ def work_with_files():
 
 
 if __name__ == '__main__':
-    # create data
+    # create data #
     unique_name = set()
     for line in work_with_files():
         unique_name.add(line.split(";", 1)[0])
@@ -117,16 +128,9 @@ if __name__ == '__main__':
     for line in work_with_files():
         if not line.split(";")[3] == "out":
             continue
-        payer = Payer.find_by_name(line.split(";")[0])
-        if payer:
-            amount = float(line.split(";")[1].split()[0].replace(",", "."))
-            currency = line.split(";")[1].split()[1]
-            date = datetime.datetime.strptime(line.split(";")[2].split()[0], "%Y-%m-%d").date()
-            payer.add_payment(amount, currency, date)
-        else:
-            print(line.split(";")[0], "not found")
+        Payment.create_from_string(line)
 
-    # create report
+    # create report #
     date_set = set(a.date for a in Payment.payment_list)
     currency_set = set(a.currency for a in Payment.payment_list)
     print("Payments report")
