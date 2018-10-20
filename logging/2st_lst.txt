@@ -1,0 +1,25 @@
+List of payers sorted by sum of purchases
+Narcissa Malfoy - 19666.26 total sum
+Peter Pettigrew - 19058.01 total sum
+Dolores Umbridge - 18327.04 total sum
+Rachel Green - 18180.37 total sum
+Ginny Weasley - 17640.17 total sum
+Petunia Dursley - 15774.45 total sum
+Sirius Black - 15641.00 total sum
+Phoebe Buffay - 15466.01 total sum
+Harry Potter - 15203.37 total sum
+Vernon Dursley - 14853.21 total sum
+Joseph Tribbiani - 14193.63 total sum
+Ron Weasley - 13967.28 total sum
+Rubeus Hagrid - 13734.66 total sum
+Severus Snape - 12376.76 total sum
+Hermione Granger - 10779.75 total sum
+Lucius Malfoy - 9476.53 total sum
+Albus Dumbledore - 8873.48 total sum
+Bellatrix Lestrange - 8573.44 total sum
+Draco Malfoy - 6335.34 total sum
+Remus Lupin - 6290.72 total sum
+Molly Weasley - 5152.22 total sum
+Monica Geller - 2420.52 total sum
+Ross Geller - 2031.90 total sum
+Chandler Bing - 574.98 total sum

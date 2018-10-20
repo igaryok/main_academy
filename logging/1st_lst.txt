@@ -1,0 +1,25 @@
+List payers sorted by quantity of purchases
+Sirius Black - 35 purchases
+Dolores Umbridge - 35 purchases
+Rubeus Hagrid - 34 purchases
+Petunia Dursley - 34 purchases
+Peter Pettigrew - 34 purchases
+Phoebe Buffay - 34 purchases
+Rachel Green - 34 purchases
+Narcissa Malfoy - 33 purchases
+Ginny Weasley - 33 purchases
+Harry Potter - 28 purchases
+Joseph Tribbiani - 27 purchases
+Ron Weasley - 25 purchases
+Vernon Dursley - 24 purchases
+Severus Snape - 24 purchases
+Albus Dumbledore - 22 purchases
+Hermione Granger - 21 purchases
+Lucius Malfoy - 18 purchases
+Remus Lupin - 15 purchases
+Bellatrix Lestrange - 14 purchases
+Draco Malfoy - 13 purchases
+Molly Weasley - 12 purchases
+Ross Geller - 4 purchases
+Chandler Bing - 3 purchases
+Monica Geller - 3 purchases
