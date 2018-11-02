@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Filter</title>
+</head>
+<body>
+<p>FILTER</p>
+    <form action ="" method="post">
+        ID
+        <input title="ID" type="text" name="id">
+        NAME
+        <input title="Name" type="text" name="name">
+        CURRENCY
+        <input title="Currency" type="text" name="currency">
+        AMOUNT
+        <input title="Amount" type="text" name="amount">
+        <input type="submit" value="APPLY">
+    </form>
+    <table border="1" cellpadding="5" align="left">
+        <caption>FILTERED PAYMENTS</caption>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>AMOUNT</th>
+            <th>CURRENCY</th>
+        </tr>
+        </thead>
+        {% for p in payments %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.amount }}</td>
+            <td>{{ p.currency }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

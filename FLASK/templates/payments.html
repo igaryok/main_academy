@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payments</title>
+</head>
+<body>
+    <table border="1" cellpadding="5" align="center">
+        <caption>PAYMENTS</caption>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>AMOUNT</th>
+            <th>CURRENCY</th>
+        </tr>
+        </thead>
+        {% for p in payments %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.amount }}</td>
+            <td>{{ p.currency }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
